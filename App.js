@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { useFonts } from "expo-font";
+import { NavigationContainer } from "@react-navigation/native";
+
+import RiseStackNavigation from "./src/utils/navigations/StackNavigation";
 
 export default function App() {
+  const [loaded] = useFonts({
+    NotoSansRegular: require("./assets/fonts/Noto-Sans-KR-Regular.otf"),
+    NotoSansMedium: require("./assets/fonts/Noto-Sans-KR-Medium.otf"),
+    NotoSansBold: require("./assets/fonts/Noto-Sans-KR-Bold.otf"),
+    NotoSansBlack: require("./assets/fonts/Noto-Sans-KR-Black.otf"),
+  });
+
+  if (!loaded) return null;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <RiseStackNavigation />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
